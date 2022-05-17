@@ -60,7 +60,7 @@ export default function Login() {
     <>
       <div className='auth'>
         <form onSubmit={handleSubmit}>
-          <h1>Iniciar Sesion</h1>
+          <h1>Iniciar Sesión</h1>
           <div>
             <label>Nombre de usuario</label>
             <input 

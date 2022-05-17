@@ -138,6 +138,19 @@ export default function Register() {
           <FormControlLabel
             control={
               <Switch
+                sx={{
+                  '& .MuiSwitch-track': {
+                    backgroundColor: '#FFC5BE',
+                  },
+                  '& .MuiSwitch-switchBase.Mui-checked': {
+                    '& .MuiSwitch-thumb': {
+                    backgroundColor: '#FF452B',
+                  }
+                  },
+                  '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track':{
+                    backgroundColor: '#FFC5BE',
+                  }
+                }}
                 value={values.switch}
                 onChange={() =>
                   formik.setFieldValue("switch", !formik.values.switch)
@@ -150,7 +163,7 @@ export default function Register() {
           />
           {values.switch && (
             <div>
-              <label> Por favor Introduce el identificador de equipo</label>
+              <label> Por favor, introduce el identificador de equipo</label>
               <input 
                 type='text'
                 name='teamID' 
@@ -201,7 +214,7 @@ export default function Register() {
           </div>
           {values.continent === "America" && (
             <div>
-            <label>Region</label>
+            <label>Región</label>
             <select
               name='region'  
               value={values.region} 
@@ -225,7 +238,7 @@ export default function Register() {
             <button type="submit">Enviar</button>
           </div>
           <div>
-            <Link to="/login">Iniciar Sesion</Link>
+            <Link to="/login">Ir a Iniciar Sesión</Link>
           </div>
         </form>
       </div>

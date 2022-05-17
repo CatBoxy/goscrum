@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './Header.styles.css';
+import logo from '../../assets/img/GoScrum.png'
 
 export default function Header(props) {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function Header(props) {
   }
   return (
     <header>
-      <img src="/img/GoScrum.png" alt="logo"/>
+      <img src={logo} alt="logo"/>
       <div className="wrapper_right_header">
         <div>
           <button onClick={() => navigate("/donate", { replace: true })}>

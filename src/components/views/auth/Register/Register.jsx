@@ -36,8 +36,12 @@ export default function Register() {
     Yup.object().shape({
       userName: Yup.string()
           .min(4, "La cantidad minima de caracteres es 4")
+          .matches(/^[aA-zZ\s]+$/, "El nombre usuario debe ser solo letras")
           .required(required),
-      password: Yup.string().required(required),
+      password: Yup.string()
+          .min(6, "La cantidad minima de caracteres es 6")
+          .matches(/^(?:(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*)$/, "Debe contener al menos 1 mayúscula, 1 minúscula y 1 número")
+          .required(required),
       email: Yup.string().email().required("Debe ser un email valido"),
       // teamID: Yup.string().required(required),
       role: Yup.string().required(required),

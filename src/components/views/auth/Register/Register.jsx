@@ -34,6 +34,7 @@ export default function Register() {
 
   const validationSchema = () => 
     Yup.object().shape({
+      switch: Yup.boolean(),
       userName: Yup.string()
           .min(4, "La cantidad minima de caracteres es 4")
           .matches(/^[aA-zZ\s]+$/, "El nombre usuario debe ser solo letras")
@@ -43,7 +44,11 @@ export default function Register() {
           .matches(/^(?:(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*)$/, "Debe contener al menos 1 mayúscula, 1 minúscula y 1 número")
           .required(required),
       email: Yup.string().email().required("Debe ser un email valido"),
-      // teamID: Yup.string().required(required),
+      teamID: Yup.string()
+          .when("switch", {
+            is: true,
+            then: Yup.string().required(required)
+          }),
       role: Yup.string().required(required),
       continent: Yup.string().required(required),
       region: Yup.string().required(required),
@@ -169,7 +174,12 @@ export default function Register() {
                 name='teamID' 
                 value={values.teamID} 
                 onChange={handleChange}
+                onBlur={handleBlur}
+                className={values.switch && errors.teamID && touched.teamID ? "error" : ''}
               />
+              {values.switch && errors.teamID && touched.teamID && (
+              <span className='error-message'>{errors.teamID}</span>
+            )}
           </div>
           )}
           <div>

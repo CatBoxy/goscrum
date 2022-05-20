@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/goscrum/static/css/main.1cbfc441.css",
-    "main.js": "/goscrum/static/js/main.5a4e2abe.js",
+    "main.css": "/goscrum/static/css/main.0d2e3f43.css",
+    "main.js": "/goscrum/static/js/main.ba075b30.js",
     "static/js/799.111b6445.chunk.js": "/goscrum/static/js/799.111b6445.chunk.js",
+    "static/media/GoScrum.svg": "/goscrum/static/media/GoScrum.eeeb62cc0c8df9b7c4525300291431e8.svg",
     "index.html": "/goscrum/index.html",
-    "main.1cbfc441.css.map": "/goscrum/static/css/main.1cbfc441.css.map",
-    "main.5a4e2abe.js.map": "/goscrum/static/js/main.5a4e2abe.js.map",
+    "main.0d2e3f43.css.map": "/goscrum/static/css/main.0d2e3f43.css.map",
+    "main.ba075b30.js.map": "/goscrum/static/js/main.ba075b30.js.map",
     "799.111b6445.chunk.js.map": "/goscrum/static/js/799.111b6445.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1cbfc441.css",
-    "static/js/main.5a4e2abe.js"
+    "static/css/main.0d2e3f43.css",
+    "static/js/main.ba075b30.js"
   ]
 }

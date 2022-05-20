@@ -162,9 +162,15 @@ export default function Register() {
                 }
                 name="switch"
                 color="secondary"
-                />
+              />
             }
             label="Perteneces a un equipo ya creado"
+            sx={{
+              '& .MuiFormControlLabel-label': {
+                fontFamily: 'Inter',
+                fontSize: '12px'
+              }
+            }}
           />
           {values.switch && (
             <div>
@@ -191,7 +197,7 @@ export default function Register() {
               onBlur={handleBlur}
               className={errors.role && touched.role ? "error" : ''}
             >
-              <option value="">Seleccionar un Rol</option>
+              <option value="">Selecciona un rol...</option>
               {data?.Rol?.map(option =>
                  <option value={option} key={option}>
                     {option}
@@ -211,7 +217,7 @@ export default function Register() {
               onBlur={handleBlur}
               className={errors.continent && touched.continent ? "error" : ''}
             >
-              <option value="">Seleccionar un continente</option>
+              <option value="">Selecciona un continente...</option>
               {data?.continente?.map(option =>
                  <option value={option} key={option}>
                     {option}
@@ -232,7 +238,7 @@ export default function Register() {
               onBlur={handleBlur}
               className={errors.region && touched.region ? "error" : ''}
             >
-              <option value="">Seleccionar una region</option>
+              <option value="">Selecciona una región...</option>
               {data?.region?.map(option =>
                  <option value={option} key={option}>
                     {option}

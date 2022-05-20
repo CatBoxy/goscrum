@@ -23,7 +23,7 @@ export default function TaskForm(props) {
 
   const validationSchema = () => 
     Yup.object().shape({
-      title: Yup.string().min(6, "La cantidad minima de caracteres es 6").required(required),
+      title: Yup.string().min(6, "La cantidad mínima de caracteres es 6").required(required),
       status: Yup.string().required(required),
       importance: Yup.string().required(required),
       description: Yup.string().required(required),
@@ -32,7 +32,7 @@ export default function TaskForm(props) {
   const onSubmit = () => {
     dispatch(createTask(values))
     resetForm()
-    toast("Tu tarea se creo")
+    toast("Tu tarea se creó")
   };
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
@@ -42,7 +42,7 @@ export default function TaskForm(props) {
   return (
     <>
       <section className="task-form">
-        <h2>Crear Tarea</h2>
+        <h2>Crear tarea</h2>
         <p>Crea tus tareas</p>
         <form onSubmit={handleSubmit}>
           <div>
@@ -52,7 +52,7 @@ export default function TaskForm(props) {
                 onChange={handleChange} 
                 onBlur={handleBlur} 
                 type="text" 
-                placeholder='Titulo'
+                placeholder='Título'
                 className={errors.title && touched.title ? "error" : ''}
                 value={values.title}
               />
@@ -104,11 +104,11 @@ export default function TaskForm(props) {
             </div>
             
           </div>
-          <div>
+          <div className='description'>
             <textarea
               name="description"
               onChange={handleChange}
-              placeholder='Descripcion'
+              placeholder='Descripción'
               onBlur={handleBlur}
               className={errors.description && touched.description ? "error" : ''}
               value={values.description}
@@ -119,7 +119,7 @@ export default function TaskForm(props) {
                 </span>
               )}
           </div>
-          <button type='submit'>Crear</button>
+          <button className="createBtn" type='submit'>Crear</button>
         </form>
         <ToastContainer/>
       </section>

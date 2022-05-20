@@ -52,7 +52,7 @@ export default function Card({
           </>
         )}
         {!showMore && limitString(description).addButton && (
-          <button type="button" onClick={() => setShowMore(true)}>
+          <button className='seeMore' type="button" onClick={() => setShowMore(true)}>
             Ver mas
           </button>
         )}

@@ -71,7 +71,7 @@ export default function Login() {
               onBlur={handleBlur}
               className={errors.userName && touched.userName ? "error" : ''}
             />
-            {errors.userName && touched.userName && <div>{errors.userName}</div>}
+            {errors.userName && touched.userName && <div className='error-message'>{errors.userName}</div>}
           </div>
           <div>
             <label>Contraseña</label>
@@ -83,13 +83,13 @@ export default function Login() {
               onBlur={handleBlur}
               className={errors.password && touched.password ? "error" : ''}
             />
-            {errors.password && touched.password && <div>{errors.password}</div>}
+            {errors.password && touched.password && <div className='error-message'>{errors.password}</div>}
           </div>
           <div>
             <button type="submit">Enviar</button>
           </div>
           <div>
-            <Link to="/register">Registrarme</Link>
+            <Link to="/register" id='register'>Registrarme</Link>
           </div>
         </form>
       </div>

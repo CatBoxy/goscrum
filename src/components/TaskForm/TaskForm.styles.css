@@ -79,6 +79,14 @@
   padding: 10px !important;
 }
 
+.createBtn {
+  margin-bottom: 15px;
+}
+
+.description {
+  flex-direction: column !important;
+}
+
 @media (min-width: 1300px) {
   .task-form {
     width: 50%;

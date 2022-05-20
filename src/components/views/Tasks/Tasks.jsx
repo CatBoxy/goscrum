@@ -47,7 +47,7 @@ export default function Tasks() {
     }
   },[search])
 
-  const handleDelete = id => dispatch(deleteTask(id))
+  const handleDelete = id => {dispatch(deleteTask(id))}
 
   const handleEditCardStatus = data => dispatch(editTaskStatus(data))
 
@@ -106,30 +106,50 @@ export default function Tasks() {
               >
                 <FormControlLabel
                   value="ALL"
-                  control={<Radio/>}
+                  control={
+                    <Radio
+                      sx={{
+                        color: 'rgba(0, 0, 0, 0.6)',
+                        '&.Mui-checked': {
+                          color: '#FF452B',
+                        },
+                      }}
+                    />
+                  }
                   label="Todas"
                   />
                 <FormControlLabel
                   value="ME"
-                  control={<Radio/>}
+                  control={
+                    <Radio
+                      sx={{
+                        color: 'rgba(0, 0, 0, 0.6)',
+                        '&.Mui-checked': {
+                          color: '#FF452B',
+                        },
+                      }}
+                    />
+                  }
                   label="Mis Tareas"
                   />
               </RadioGroup>
             </FormControl>
-            <div className="search">
-              <input 
-                type="text" 
-                placeholder="Buscar por titulo" 
-                onChange={handleSearch}
-              />
+            <div className="inputsWrapper">
+              <div className="search">
+                <input 
+                  type="text" 
+                  placeholder="Seleccionar por título..." 
+                  onChange={handleSearch}
+                />
+              </div>
+              <select name="importance" onChange={handleChangeImportance}>
+                <option value="">Seleccionar una prioridad</option>
+                <option value="ALL">Todas</option>
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
+              </select>
             </div>
-            <select name="importance" onChange={handleChangeImportance}>
-              <option value="">Seleccionar una prioridad</option>
-              <option value="ALL">Todas</option>
-              <option value="LOW">Low</option>
-              <option value="MEDIUM">Medium</option>
-              <option value="HIGH">High</option>
-            </select>
           </div>
           {isPhone ? (
             !renderList?.length ? (

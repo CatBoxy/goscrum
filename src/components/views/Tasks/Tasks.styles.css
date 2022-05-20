@@ -4,14 +4,14 @@
 
 #tasks .wrapper_list {
   background-color: #fafafa;
-  border-radius: var(--global-border-radius);
+  border-radius: var(--global-radius);
   height: calc(100vh -100px);
   padding: 10px;
-  box-shadow: 0 2px 5px #dbdbdb;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #tasks .wrapper_list h2 {
-  font-size: 1.2rem;
+  font-size: 18px;
   margin: 0;
 }
 
@@ -25,13 +25,13 @@
   flex: 1;
   border-radius: var(--global-radius);
   padding: 10px;
-  box-shadow: 0 2px 5px #dbdbdb;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: white;
 }
 
 #tasks .wrapper_list .list_group .list h4 {
   font-size: 1.2rem;
-  margin: 0 0 5px;
+  margin: 0 0 8px;
 }
 
 #tasks .card {
@@ -49,12 +49,13 @@
   position: absolute;
   right: 12px;
   top: 10px;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 #tasks .card h3 {
   font-size: 1rem;
   font-weight: 700;
+  margin: 0 0 5px 0;
 }
 
 #tasks .card h6,
@@ -76,9 +77,16 @@
   color: white;
 }
 
-#tasks .card button .finished {
-  background-color: #1ec876;
-  color: #1ec876;
+#tasks .card button.finished {
+  background-color: #1EC876;
+  color: white;
+  border: solid 1px #1EC876;
+}
+
+#tasks .card button.new {
+  background-color: var(--global-primary-color);
+  color: white;
+  border: solid 1px var(--global-primary-color);
 }
 
 #tasks .card button .finished:hover {
@@ -89,6 +97,13 @@
 #tasks .card button.low {
   background-color: #007bff;
   color: white;
+  border: solid 1px #007bff;
+}
+
+#tasks .card button.high {
+  background-color: var(--global-primary-color);
+  color: white;
+  border: solid 1px var(--global-primary-color);
 }
 
 #tasks .card button.low:hover {
@@ -101,12 +116,17 @@
   background-color: #fbde3f;
   border-color: #fbde3f;
   color: black;
+  border: solid 1px #fbde3f;
 }
 
 #tasks .card button.medium:hover,
 #tasks .card button.progress:hover {
   background-color: black;
   color: #fbde3f;
+}
+
+#tasks .card button.seeMore {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #tasks .card p {
@@ -116,20 +136,58 @@
   margin: 0;
 }
 
-@media (min-width: 900px) {
-  /* .phone {
-    display: none;
-  }
+.filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
 
-  #tasks .wrapper_list .list_group {
-    display: flex;
-  } */
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.filters select {
+  width: 208px;
+}
+
+.search input {
+  width: 200px;
+}
+
+.search input,
+.filters select {
+  padding: 11px 0 11px 6px;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  background: #FFFFFF;
+}
+
+@media (min-width: 500px) {
+  .inputsWrapper {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 900px) {
+
   #tasks {
     display: flex;
     flex-direction: row;
   }
   .wrapper_list {
     width: 70%;
+  }
+
+  .filters {
+    flex-direction: row;
+  }
+
+  .inputsWrapper {
+    flex-direction: row;
   }
 }
 

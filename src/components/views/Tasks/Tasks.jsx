@@ -12,21 +12,29 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTasks, deleteTask, editTaskStatus } from '../../../store/actions/tasksActions';
 
 export default function Tasks() {
+  // manage list state
   const [ list, setList ] = useState(null);
+  // manage list to render state
   const [ renderList, setRenderList ] = useState(null);
+  // manage list filter by author state
   const [ tasksFromWho, setTasksFromWho ] = useState("ALL");
+  // manage search state (debounce)
   const [ search, SetSearch ] = useState("");
+  // screen width checker hook
   const { isPhone } = useResize();
   const dispatch = useDispatch();
   
+  // import redux states
   const { loading, error, tasks } = useSelector(state => {
     return state.tasksReducer;
   })
 
+  // Whenever tasksFromWho changes, Redux updates its tasks calling the API
   useEffect(() => {
     dispatch(getTasks(tasksFromWho === "ME" ? "me" : ""))
-  },[tasksFromWho])
+  },[dispatch, tasksFromWho])
 
+  // Whenever tasks from Redux changes state update list and renderlList
   useEffect(() => {
     if (tasks?.length) {
       setList(tasks)
@@ -37,6 +45,7 @@ export default function Tasks() {
       setRenderList([])
   },[tasks])
   
+  // Whenever search value changes, list is filtered and RenderList updated
   useEffect(() => {
     if (search) {
       setRenderList(
@@ -47,12 +56,15 @@ export default function Tasks() {
     }
   },[search])
 
+  // delete task dispatch for Redux
   const handleDelete = id => {dispatch(deleteTask(id))}
 
+  // edit task dispatch for Redux
   const handleEditCardStatus = data => dispatch(editTaskStatus(data))
 
   if (error) return <div>Hubo un error </div>
 
+  // Component renders list of ALL cards
   const renderAllCards = () => {
     return renderList?.map(data => 
       (<Card
@@ -63,6 +75,7 @@ export default function Tasks() {
       />))
   }
 
+  // Component renders list of cards in columns depending of its progress state
   const renderColumnCards = (text) => {
     return renderList
       ?.filter(data => data.status === text)
@@ -75,6 +88,7 @@ export default function Tasks() {
           />))
   }
 
+  // filters list by importance value and updates RenderList
   const handleChangeImportance = event => {
     if (event.currentTarget.value === "ALL") {
       setRenderList(list);
@@ -83,6 +97,7 @@ export default function Tasks() {
     setRenderList(list.filter(data => data.importance === event.currentTarget.value))
   }
 
+  // Debounce for searching task by name
   const handleSearch = debounce(event => {
     SetSearch(event?.target?.value)
   }, 1000);
@@ -97,6 +112,7 @@ export default function Tasks() {
             <h2>Mis tareas</h2>
           </div>
           <div className="filters">
+            {/* radio buttons filter tasks by author */}
             <FormControl>
               <RadioGroup
                 row

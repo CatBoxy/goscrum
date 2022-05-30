@@ -8,11 +8,15 @@ import { Switch, FormControlLabel } from '@mui/material';
 
 const { REACT_APP_API_ENDPOINT } = process.env;
 
+// Register component renders User register form
+
 export default function Register() {
 
+  // Declare data state for handling form options with API's option data
   const [data, setData] = useState();
   const navigate = useNavigate();
 
+  // Fetch API <Select> options data, stores in component state
   useEffect(() => {
     fetch(`${REACT_APP_API_ENDPOINT}auth/data`)
       .then(response => response.json())
@@ -36,14 +40,15 @@ export default function Register() {
     Yup.object().shape({
       switch: Yup.boolean(),
       userName: Yup.string()
-          .min(4, "La cantidad minima de caracteres es 4")
-          .matches(/^[aA-zZ\s]+$/, "El nombre usuario debe ser solo letras")
+          .min(4, "La cantidad mínima de caracteres es 4")
+          .matches(/^[aA-zZ\s]+$/, "El nombre de usuario debe ser solo letras")
           .required(required),
       password: Yup.string()
-          .min(6, "La cantidad minima de caracteres es 6")
+          .min(6, "La cantidad mínima de caracteres es 6")
           .matches(/^(?:(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*)$/, "Debe contener al menos 1 mayúscula, 1 minúscula y 1 número")
           .required(required),
-      email: Yup.string().email().required("Debe ser un email valido"),
+      email: Yup.string().email().required("Debe ser un email válido"),
+      // Conditional validation
       teamID: Yup.string()
           .when("switch", {
             is: true,
@@ -54,6 +59,7 @@ export default function Register() {
       region: Yup.string().required(required),
   })
 
+  // Declare handler for managing region input render and value
   const handleChangeContinent = (value) => {
     setFieldValue('continent', value);
     if (value !== "America") {
@@ -61,7 +67,9 @@ export default function Register() {
     }
   }
 
+  // Declare onSubmit function
   const onSubmit = () => {
+    // Generates uuid if no previous teamID
     const teamID = !values.teamID ? uuidv4() : values.teamID;
 
     fetch(`${REACT_APP_API_ENDPOINT}auth/register`, {
@@ -83,14 +91,17 @@ export default function Register() {
     })
     .then(response => response.json())
     .then(data => 
+      // send uuid through params
       navigate("/registered/" + data?.result?.user?.teamID, {
         replace: true 
       })
     )
   }
 
+  // Declare formik hook
   const formik = useFormik({ initialValues, onSubmit, validationSchema });
 
+  // Destructuring states and helpers from formik
   const { handleSubmit, handleChange, values, errors, touched, handleBlur, setFieldValue } = formik;
 
   return (

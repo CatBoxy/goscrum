@@ -7,7 +7,7 @@ import { createTask } from '../../store/actions/tasksActions';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-
+// TaskForm component renders Task creation form
 export default function TaskForm(props) {
 
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ export default function TaskForm(props) {
       description: Yup.string().required(required),
   })
 
+  // onSubmit dispatch create action to Redux, resets form
   const onSubmit = () => {
     dispatch(createTask(values))
     resetForm()

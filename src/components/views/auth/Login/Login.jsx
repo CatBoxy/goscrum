@@ -8,15 +8,20 @@ import { swal } from '../../../../utils/swal';
 const { REACT_APP_API_ENDPOINT: API_ENDPOINT } = process.env;
 
 export default function Login() {
+  // Import useNavigate hook to navigate between pages on succesfull submit
   const navigate = useNavigate();
 
+  // Declare initial form values
   const initialValues = {
     userName: '',
     password: ''
   }
 
+  // Declare "required" error inside variable
   const required = "* Campo obligatorio"
 
+  // Declare validation schema for each form input
+  // Create custom validations with Yup
   const validationSchema = () => 
     Yup.object().shape({
       userName: Yup.string()
@@ -25,11 +30,16 @@ export default function Login() {
       password: Yup.string().required(required),
   })
 
-
+  // Declare onSubmit function
   const onSubmit = () => {
 
+    // Destructuring form input values
     const { userName, password } = values;
 
+    // Send POST fetch request to auth API
+    // If success store recieved token, and form userName in localStorage
+    // Then navigate to "/"
+    // If no response or error, execute swal()
     fetch(`${API_ENDPOINT}auth/login`, {
       method: "POST",
       headers: {
@@ -52,10 +62,13 @@ export default function Login() {
     })  
   }
 
+  // Declare formik hook, pass in necessary values
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
 
+  // Destructuring necessary states/helpers from formik hook
   const { handleSubmit, handleChange, values, errors, touched, handleBlur } = formik;
 
+  // Create input with formik state values and helpers
   return (
     <>
       <div className='auth'>
@@ -69,6 +82,7 @@ export default function Login() {
               value={values.userName} 
               onChange={handleChange}
               onBlur={handleBlur}
+              // Class for displaying input error color
               className={errors.userName && touched.userName ? "error" : ''}
             />
             {errors.userName && touched.userName && <div className='error-message'>{errors.userName}</div>}

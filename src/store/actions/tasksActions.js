@@ -2,16 +2,24 @@ import { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE } from '../types';
 
 const { REACT_APP_API_ENDPOINT: API_ENDPOINT } = process.env
 
-
+// first action to dispatch in every req
 export const tasksRequest = () => ({
   type: TASKS_REQUEST,
 })
 
+// if everything goes ok dispatch this action
+// recieves data from a req, returns type and data as payload
 export const tasksSuccess = data => ({
   type: TASKS_SUCCESS,
   payload: data,
 })
 
+// export const tasksReset = () => ({
+//   type: 'TASKS_RESET',
+// })
+
+// if error in req, dispatch this action
+// returns error in payload
 export const taskFailure = error => ({
   type: TASKS_FAILURE,
   payload: error,
@@ -85,5 +93,6 @@ export const createTask = data => dispatch => {
     })
     .then(response => response.json())
     .then(() => dispatch(getTasks("")))
+    // .then(() => dispatch(tasksReset()))
     .catch(error => dispatch(taskFailure(error)))
 }

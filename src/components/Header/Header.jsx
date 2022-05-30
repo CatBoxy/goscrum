@@ -8,6 +8,7 @@ import HiddenMenu from './HiddenMenu/HiddenMenu';
 
 
 export default function Header(props) {
+  // burguer menu display state
   const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();

@@ -38,11 +38,12 @@ header > div > div {
   font-weight: 400;
 }
 
-.logout {
-  color: #FF452B;
+.donateButton:hover {
+  cursor: pointer;
 }
 
-header > div {
+.logout {
+  color: #FF452B;
   cursor: pointer;
 }
 

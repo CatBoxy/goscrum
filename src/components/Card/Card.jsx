@@ -14,9 +14,12 @@ export default function Card({
   },
   data}) {
 
+  // state manages see more button display
   const [ showMore, setShowMore ] = useState(false);
+  // date formatter
   const dateTime = new Date(createdAt).toLocaleString() + " hs";
 
+  // string length limit function
   const limitString = (str) => {
     if (str.length > 170) {
       return { string: str.slice(0, 167).concat("..."), addButton: true }

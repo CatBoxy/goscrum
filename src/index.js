@@ -6,7 +6,8 @@ import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 
-
+// Wrap App component in HashRouter for routing and Provider for Redux states
+// Provider component provides Redux states to App
 ReactDOM.render(
     <React.StrictMode>
       <HashRouter>

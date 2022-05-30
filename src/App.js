@@ -8,8 +8,10 @@ import Donate from './components/views/Donate/Donate';
 import Tasks from './components/views/Tasks/Tasks';
 import Registered from './components/views/Registered/Registered';
 
+// Lazy loading import
 const Error404 = lazy(() => import('./components/views/Error404/Error404'));
 
+// Declare authentiation component for private routes
 const RequireAuth = ({ children }) => {
   if (!localStorage.getItem("token")) {
     return <Navigate to="/login" replace={true}/>
@@ -17,6 +19,7 @@ const RequireAuth = ({ children }) => {
   return children;
 };
 
+// Declare parameters for page transition animations
 const pageTransition = {
   in: {
     opacity: 1
@@ -28,6 +31,8 @@ const pageTransition = {
 
 export default function App() {
   const location = useLocation()
+  // Routes wraps all routes
+  // AnimatePresence wraps all routes, each wrapped in motion.div
   return (
     <>
       <AnimatePresence>
@@ -66,6 +71,7 @@ export default function App() {
             path='*' 
             element={
               <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+                {/* Suspense renders a loading component while lazy loading loads the main component */}
                 <Suspense fallback={<>...</>}>
                   <Error404/>
                 </Suspense>

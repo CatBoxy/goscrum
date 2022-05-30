@@ -83,27 +83,36 @@
   border: solid 1px #1EC876;
 }
 
+#tasks .card button.finished:hover {
+  background-color: white;
+  color: #1ec876;
+  cursor: pointer;
+}
+
+#tasks .card button.high,
 #tasks .card button.new {
   background-color: var(--global-primary-color);
   color: white;
   border: solid 1px var(--global-primary-color);
 }
 
-#tasks .card button .finished:hover {
+#tasks .card button.new:hover {
+  cursor: pointer;
   background-color: white;
-  color: #1ec876;
+  color: var(--global-primary-color);
+  border: solid 1px var(--global-primary-color);
+}
+
+#tasks .card button.high:hover {
+  background-color: white;
+  color: var(--global-primary-color);
+  border: solid 1px var(--global-primary-color);
 }
 
 #tasks .card button.low {
   background-color: #007bff;
   color: white;
   border: solid 1px #007bff;
-}
-
-#tasks .card button.high {
-  background-color: var(--global-primary-color);
-  color: white;
-  border: solid 1px var(--global-primary-color);
 }
 
 #tasks .card button.low:hover {
@@ -119,14 +128,23 @@
   border: solid 1px #fbde3f;
 }
 
-#tasks .card button.medium:hover,
-#tasks .card button.progress:hover {
+#tasks .card button.medium:hover {
   background-color: black;
   color: #fbde3f;
 }
 
+#tasks .card button.progress:hover {
+  background-color: black;
+  color: #fbde3f;
+  cursor: pointer;
+}
+
 #tasks .card button.seeMore {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#tasks .card button.seeMore:hover {
+  cursor: pointer;
 }
 
 #tasks .card p {

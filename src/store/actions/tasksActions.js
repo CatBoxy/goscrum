@@ -1,4 +1,4 @@
-import { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE } from '../types';
+import { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE, TASKS_CREATED } from '../types';
 
 const { REACT_APP_API_ENDPOINT: API_ENDPOINT } = process.env
 
@@ -14,9 +14,9 @@ export const tasksSuccess = data => ({
   payload: data,
 })
 
-// export const tasksReset = () => ({
-//   type: 'TASKS_RESET',
-// })
+export const tasksCreated = () => ({
+  type: TASKS_CREATED,
+})
 
 // if error in req, dispatch this action
 // returns error in payload
@@ -92,7 +92,7 @@ export const createTask = data => dispatch => {
     body: JSON.stringify({ task: {...data} })
     })
     .then(response => response.json())
+    .then(() => dispatch(tasksCreated()))
     .then(() => dispatch(getTasks("")))
-    // .then(() => dispatch(tasksReset()))
     .catch(error => dispatch(taskFailure(error)))
 }

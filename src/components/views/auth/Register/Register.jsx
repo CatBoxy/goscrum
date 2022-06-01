@@ -73,6 +73,10 @@ export default function Register() {
     // Generates uuid if no previous teamID
     const teamID = !values.teamID ? uuidv4() : values.teamID;
 
+    // Send POST fetch request to auth API
+    // If success creates new user
+    // Then navigate to "/"
+    // If no response or error, execute swal()
     fetch(`${REACT_APP_API_ENDPOINT}auth/register`, {
       method: "POST",
       headers: {
@@ -91,12 +95,16 @@ export default function Register() {
       })
     })
     .then(response => response.json())
-    .then(data => 
-      // send uuid through params
-      navigate("/registered/" + data?.result?.user?.teamID, {
-        replace: true 
-      })
-    )
+    .then(data => {
+      if (data.status_code === 201) {
+        // send uuid through params
+        navigate("/registered/" + data?.result?.user?.teamID, {
+          replace: true 
+        })
+        return
+      }
+      swal();
+    })
   }
 
   // Declare formik hook

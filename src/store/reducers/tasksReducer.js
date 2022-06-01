@@ -1,11 +1,11 @@
-import { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE } from '../types';
+import { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE, TASKS_CREATED } from '../types';
 
 // Initial state of Tasks is declared
 const initialState = {
   loading: false,
   tasks: [],
   error: "",
-  reset: false,
+  success: false,
 };
 
 // tasksReducer manages Tasks state in each action
@@ -24,6 +24,7 @@ export const tasksReducer = (state = initialState, action) => {
         loading: false,
         error: "",
         tasks: action.payload,
+        success: false,
       }
 
     case TASKS_FAILURE:
@@ -33,11 +34,12 @@ export const tasksReducer = (state = initialState, action) => {
         tasks: [],
       }
 
-    // case 'TASKS_RESET':
-    //   return {
-    //     ...state,
-    //     reset: true,
-    //   }
+    case TASKS_CREATED:
+      return {
+        ...state,
+        success: true,
+      }
+
     default:
       return state
   }

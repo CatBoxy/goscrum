@@ -32,6 +32,7 @@ export default function Tasks() {
   // Whenever tasksFromWho changes, Redux updates its tasks calling the API
   useEffect(() => {
     dispatch(getTasks(tasksFromWho === "ME" ? "me" : ""))
+    console.log(loading)
   },[dispatch, tasksFromWho])
 
   // Whenever tasks from Redux changes state update list and renderlList

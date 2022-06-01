@@ -2,8 +2,10 @@ import './TaskForm.styles.css';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { ToastContainer, toast }  from 'react-toastify';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createTask } from '../../store/actions/tasksActions';
+import { useEffect } from 'react';
+
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,6 +13,17 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function TaskForm(props) {
 
   const dispatch = useDispatch();
+
+  const { success } = useSelector(state => {
+    return state.tasksReducer;
+  })
+
+  // Listens to success Redux state, if true, toast is displayed
+  useEffect(() => {
+
+    success && toast("Tu tarea se creó") 
+
+  }, [success]);
 
   const initialValues = {
     title: '',
@@ -33,7 +46,6 @@ export default function TaskForm(props) {
   const onSubmit = () => {
     dispatch(createTask(values))
     resetForm()
-    toast("Tu tarea se creó")
   };
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit });

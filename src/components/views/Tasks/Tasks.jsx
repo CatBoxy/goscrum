@@ -182,26 +182,29 @@ export default function Tasks() {
                 </div>
               )
           ) : (
-            <div className="list_group">
+            <>
               {!renderList?.length ? (
                 <div>No hay tareas creadas</div>
-                ) : loading ? <Skeleton height={90}/> : (
+                ) : loading ? 
+                <Skeleton height={90} /> : (
                   <>
-                    <div className="list">
-                      <h4>Nuevas</h4>
-                      {renderColumnCards("NEW")}
-                    </div>
-                    <div className="list">
-                      <h4>En proceso</h4>
-                      {renderColumnCards("IN PROGRESS")}
-                    </div>
-                    <div className="list">
-                      <h4>Finalizadas</h4>
-                      {renderColumnCards("FINISHED")}
+                    <div className="list_group">
+                      <div className="list">
+                        <h4>Nuevas</h4>
+                          {renderColumnCards("NEW")}
+                      </div>
+                      <div className="list">
+                        <h4>En proceso</h4>
+                          {renderColumnCards("IN PROGRESS")}
+                      </div>
+                      <div className="list">
+                        <h4>Finalizadas</h4>
+                        {renderColumnCards("FINISHED")}
+                      </div>
                     </div>
                   </>
                 )} 
-            </div>
+            </>
           )}
         </section>
       </main>

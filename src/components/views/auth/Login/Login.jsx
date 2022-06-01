@@ -58,7 +58,7 @@ export default function Login() {
         navigate("/", { replace:true });
         return
       }
-      swal();
+      swal('login');
     })  
   }
 

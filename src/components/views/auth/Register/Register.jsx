@@ -5,6 +5,7 @@ import '../Auth.styles.css';
 import * as Yup from 'yup';
 import { v4 as uuidv4 } from "uuid";
 import { Switch, FormControlLabel } from '@mui/material';
+import { swal } from '../../../../utils/swal';
 
 const { REACT_APP_API_ENDPOINT } = process.env;
 

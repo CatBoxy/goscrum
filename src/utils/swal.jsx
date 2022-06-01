@@ -2,8 +2,8 @@ import Swal from 'sweetalert2';
 
 export const swal = (props) =>
       Swal.fire({
-        title: "Credenciales inválidas",
-        text: "Por favor introduzca credenciales válidas",
+        title: "Ocurrió un error",
+        text: props === "login" ? "Por favor introduzca credenciales válidas" : "Ocurrio un error",
         confirmButtonText: "Aceptar",
         width: "400px",
         timer: 10000,
